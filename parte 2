@@ -1,0 +1,467 @@
+#include <stdio.h>
+#include <string.h>
+
+//16. Impressão de números ímpares
+// void imprime_impares(int n, int atual) {
+//     if (atual > n)
+//         return;
+//     printf("%d ", atual);
+//     imprime_impares(n, atual + 2);
+// }
+
+// int main() {
+//     int n;
+//     printf("Digite um numero: ");
+//     scanf("%d", &n);
+
+//     imprime_impares(n, 1);
+
+//     return 0;
+// }
+
+
+//17. Busca em array
+// int busca(int arr[], int tamanho, int elemento) {
+//     if (tamanho == 0)
+//         return 0; // Falso, não encontrado
+//     if (arr[tamanho - 1] == elemento)
+//         return 1; // Verdadeiro, encontrado
+//     return busca(arr, tamanho - 1, elemento);
+// }
+
+// int main() {
+//     int arr[] = {2, 4, 6, 8};
+//     int tamanho = 4;
+//     int elemento;
+
+//     printf("Digite o elemento a ser buscado: ");
+//     scanf("%d", &elemento);
+
+//     if (busca(arr, tamanho, elemento))
+//         printf("1\n"); // Encontrado
+//     else
+//         printf("0\n"); // Não encontrado
+
+//     return 0;
+// }
+
+
+//18. Comprimento de uma string
+// int comprimento(char str[]) {
+//     if (str[0] == '\0')
+//         return 0;
+//     return 1 + comprimento(&str[1]);
+// }
+
+// int main() {
+//     char str[100];
+//     printf("Digite a string: ");
+//     scanf("%s", str);
+
+//     printf("Comprimento: %d\n", comprimento(str));
+
+//     return 0;
+// }
+
+
+//19. Torre de Hanói
+// void hanoi(int n, char origem, char auxiliar, char destino) {
+//     if (n == 1) {
+//         printf("Mover disco 1 de %c para %c\n", origem, destino);
+//         return;
+//     }
+//     hanoi(n - 1, origem, destino, auxiliar);
+//     printf("Mover disco %d de %c para %c\n", n, origem, destino);
+//     hanoi(n - 1, auxiliar, origem, destino);
+// }
+
+// int main() {
+//     int n;
+//     printf("Digite o número de discos: ");
+//     scanf("%d", &n);
+
+//     hanoi(n, 'A', 'B', 'C');
+
+//     return 0;
+// }
+
+
+//20. Permutações de uma string
+// void troca(char *x, char *y) {
+//     char temp = *x;
+//     *x = *y;
+//     *y = temp;
+// }
+
+// void permutacoes(char str[], int l, int r) {
+//     if (l == r) {
+//         printf("%s\n", str);
+//         return;
+//     }
+//     for (int i = l; i <= r; i++) {
+//         troca(&str[l], &str[i]);
+//         permutacoes(str, l + 1, r);
+//         troca(&str[l], &str[i]); // backtracking
+//     }
+// }
+
+// int main() {
+//     char str[100];
+//     printf("Digite a string: ");
+//     scanf("%s", str);
+
+//     int n = strlen(str);
+//     permutacoes(str, 0, n - 1);
+
+//     return 0;
+// }
+
+
+//21. Combinações de um array
+// void combinacoes(int arr[], int n, int k, int index, int dados[], int i) {
+//     if (index == k) {
+//         printf("{ ");
+//         for (int j = 0; j < k; j++)
+//             printf("%d ", dados[j]);
+//         printf("}\n");
+//         return;
+//     }
+//     if (i >= n)
+//         return;
+
+//     dados[index] = arr[i];
+//     combinacoes(arr, n, k, index + 1, dados, i + 1);
+//     combinacoes(arr, n, k, index, dados, i + 1);
+// }
+
+// int main() {
+//     int arr[] = {1, 2, 3};
+//     int k = 2;
+//     int n = sizeof(arr) / sizeof(arr[0]);
+//     int dados[k];
+
+//     combinacoes(arr, n, k, 0, dados, 0);
+
+//     return 0;
+// }
+
+
+//22. Subconjuntos de um array
+// void subconjuntos(int arr[], int n, int index, int dados[], int tamanho) {
+//     if (index == n) {
+//         printf("{ ");
+//         for (int i = 0; i < tamanho; i++)
+//             printf("%d ", dados[i]);
+//         printf("}\n");
+//         return;
+//     }
+
+//     dados[tamanho] = arr[index];
+//     subconjuntos(arr, n, index + 1, dados, tamanho + 1);
+
+//     subconjuntos(arr, n, index + 1, dados, tamanho);
+// }
+
+// int main() {
+//     int arr[] = {1, 2};
+//     int n = sizeof(arr) / sizeof(arr[0]);
+//     int dados[n];
+
+//     subconjuntos(arr, n, 0, dados, 0);
+
+//     return 0;
+// }
+
+
+//23. Merge Sort
+// void merge(int arr[], int esq, int meio, int dir) {
+//     int n1 = meio - esq + 1;
+//     int n2 = dir - meio;
+//     int L[n1], R[n2];
+
+//     for (int i = 0; i < n1; i++)
+//         L[i] = arr[esq + i];
+//     for (int j = 0; j < n2; j++)
+//         R[j] = arr[meio + 1 + j];
+
+//     int i = 0, j = 0, k = esq;
+
+//     while (i < n1 && j < n2) {
+//         if (L[i] <= R[j])
+//             arr[k++] = L[i++];
+//         else
+//             arr[k++] = R[j++];
+//     }
+
+//     while (i < n1)
+//         arr[k++] = L[i++];
+
+//     while (j < n2)
+//         arr[k++] = R[j++];
+// }
+
+// void mergeSort(int arr[], int esq, int dir) {
+//     if (esq < dir) {
+//         int meio = (esq + dir) / 2;
+//         mergeSort(arr, esq, meio);
+//         mergeSort(arr, meio + 1, dir);
+//         merge(arr, esq, meio, dir);
+//     }
+// }
+
+// int main() {
+//     int arr[] = {5, 3, 8, 1};
+//     int n = sizeof(arr) / sizeof(arr[0]);
+
+//     mergeSort(arr, 0, n - 1);
+
+//     for (int i = 0; i < n; i++)
+//         printf("%d ", arr[i]);
+
+//     return 0;
+// }
+
+
+//24. Quick Sort
+// int particiona(int arr[], int baixo, int alto) {
+//     int pivo = arr[alto];
+//     int i = baixo - 1;
+
+//     for (int j = baixo; j < alto; j++) {
+//         if (arr[j] <= pivo) {
+//             i++;
+//             int temp = arr[i];
+//             arr[i] = arr[j];
+//             arr[j] = temp;
+//         }
+//     }
+
+//     int temp = arr[i + 1];
+//     arr[i + 1] = arr[alto];
+//     arr[alto] = temp;
+
+//     return i + 1;
+// }
+
+// void quickSort(int arr[], int baixo, int alto) {
+//     if (baixo < alto) {
+//         int pi = particiona(arr, baixo, alto);
+
+//         quickSort(arr, baixo, pi - 1);
+//         quickSort(arr, pi + 1, alto);
+//     }
+// }
+
+// int main() {
+//     int arr[] = {9, 2, 5, 1, 7};
+//     int n = sizeof(arr) / sizeof(arr[0]);
+
+//     quickSort(arr, 0, n - 1);
+
+//     for (int i = 0; i < n; i++)
+//         printf("%d ", arr[i]);
+
+//     return 0;
+// }
+
+
+//25. Busca binária
+// int buscaBinaria(int arr[], int baixo, int alto, int chave) {
+//     if (baixo > alto)
+//         return -1;
+
+//     int meio = (baixo + alto) / 2;
+
+//     if (arr[meio] == chave)
+//         return meio;
+//     else if (chave < arr[meio])
+//         return buscaBinaria(arr, baixo, meio - 1, chave);
+//     else
+//         return buscaBinaria(arr, meio + 1, alto, chave);
+// }
+
+// int main() {
+//     int arr[] = {1, 3, 5, 7, 9};
+//     int n = sizeof(arr) / sizeof(arr[0]);
+//     int chave = 5;
+
+//     int resultado = buscaBinaria(arr, 0, n - 1, chave);
+
+//     printf("%d\n", resultado);
+
+//     return 0;
+// }
+
+
+//26. Exponenciação rápida
+// long long int expoRapida(int x, int n) {
+//     if (n == 0)
+//         return 1;
+
+//     long long int temp = expoRapida(x, n / 2);
+
+//     if (n % 2 == 0)
+//         return temp * temp;
+//     else
+//         return temp * temp * x;
+// }
+
+// int main() {
+//     int x, n;
+//     printf("Digite a base: ");
+//     scanf("%d", &x);
+//     printf("Digite o expoente: ");
+//     scanf("%d", &n);
+
+//     printf("Resultado: %lld\n", expoRapida(x, n));
+
+//     return 0;
+// }
+
+
+//27. Caminho em uma matriz
+// int contarCaminhos(int x1, int y1, int x2, int y2) {
+//     if (x1 > x2 || y1 > y2)
+//         return 0;
+//     if (x1 == x2 && y1 == y2)
+//         return 1;
+
+//     return contarCaminhos(x1 + 1, y1, x2, y2) + contarCaminhos(x1, y1 + 1, x2, y2);
+// }
+
+// int main() {
+//     int x2, y2;
+//     printf("Digite a posição destino x2 y2: ");
+//     scanf("%d %d", &x2, &y2);
+
+//     printf("Total de caminhos: %d\n", contarCaminhos(0, 0, x2, y2));
+
+//     return 0;
+// }
+
+
+//28. Problema das N-rainhas
+// int n;
+// int tab[20]; 
+
+// int podeColocar(int linha, int coluna) {
+//     for (int i = 0; i < linha; i++) {
+//         if (tab[i] == coluna || abs(tab[i] - coluna) == abs(i - linha))
+//             return 0; 
+//     }
+//     return 1;
+// }
+
+// void nRainhas(int linha) {
+//     if (linha == n) {
+//         for (int i = 0; i < n; i++) {
+//             for (int j = 0; j < n; j++) {
+//                 if (tab[i] == j)
+//                     printf("Q ");
+//                 else
+//                     printf(". ");
+//             }
+//             printf("\n");
+//         }
+//         printf("\n");
+//         return;
+//     }
+
+//     for (int coluna = 0; coluna < n; coluna++) {
+//         if (podeColocar(linha, coluna)) {
+//             tab[linha] = coluna;
+//             nRainhas(linha + 1);
+//         }
+//     }
+// }
+
+// int main() {
+//     printf("Digite o tamanho do tabuleiro (n): ");
+//     scanf("%d", &n);
+
+//     nRainhas(0);
+
+//     return 0;
+// }
+
+
+//29. Labirinto com backtracking
+// #define MAX 10
+// int n, m;
+// int lab[MAX][MAX];
+
+// int resolver(int x, int y) {
+//     if (x < 0 || y < 0 || x >= n || y >= m || lab[x][y] != 0)
+//         return 0;
+
+//     if (x == n - 1 && y == m - 1) {
+//         lab[x][y] = 2;
+//         return 1;
+//     }
+
+//     lab[x][y] = 2;
+
+//     if (resolver(x + 1, y) || resolver(x, y + 1) || resolver(x - 1, y) || resolver(x, y - 1))
+//         return 1;
+
+//     lab[x][y] = 0;
+//     return 0;
+// }
+
+// int main() {
+//     printf("Digite n e m do labirinto: ");
+//     scanf("%d %d", &n, &m);
+
+//     printf("Digite o labirinto:\n");
+//     for (int i = 0; i < n; i++)
+//         for (int j = 0; j < m; j++)
+//             scanf("%d", &lab[i][j]);
+
+//     if (resolver(0, 0)) {
+//         printf("Caminho encontrado:\n");
+//         for (int i = 0; i < n; i++) {
+//             for (int j = 0; j < m; j++) {
+//                 if (lab[i][j] == 2)
+//                     printf("* ");
+//                 else
+//                     printf("%d ", lab[i][j]);
+//             }
+//             printf("\n");
+//         }
+//     } else {
+//         printf("Caminho nao encontrado.\n");
+//     }
+
+//     return 0;
+// }
+
+
+//30. Gerador de parênteses válidos
+// void gerarParenteses(int aberto, int fechado, int n, char str[], int pos) {
+//     if (pos == 2 * n) {
+//         str[pos] = '\0';
+//         printf("%s\n", str);
+//         return;
+//     }
+
+//     if (aberto < n) {
+//         str[pos] = '(';
+//         gerarParenteses(aberto + 1, fechado, n, str, pos + 1);
+//     }
+
+//     if (fechado < aberto) {
+//         str[pos] = ')';
+//         gerarParenteses(aberto, fechado + 1, n, str, pos + 1);
+//     }
+// }
+
+// int main() {
+//     int n;
+//     printf("Digite o número de pares de parenteses: ");
+//     scanf("%d", &n);
+
+//     char str[2 * n + 1];
+//     gerarParenteses(0, 0, n, str, 0);
+
+//     return 0;
+// }
